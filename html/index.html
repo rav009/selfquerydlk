@@ -1,0 +1,58 @@
+<html>
+<head>
+<script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js">
+</script>
+</head>
+<body style="margin:0px 0px;">
+<nav style="background-color:#dd4b39;min-height:50px;border:none;margin:0px 0px;padding:0px 0px;min-width:900px;">
+<span style="color:#fff;font-size:20px;text-align:center;font-weight:300px;line-height:50px;text-align:center;width:230px;display:block">IT SelfQuery</span>
+</nav>
+
+
+<div style="min-height:60%;min-width:900px;background-color:#ecf0f5;margin:15px 1px;">
+    <img src="static/datalake_network.png" text="datalake schema" height="60%" width="60%">
+
+    <div style="width:40%;height:60%;background-color:#FFF;min-width:200px;float:right">
+        <p style="padding:0px 5px;margin:5px 0px">如左图，GHQ将IT系统分成5个领域。</p>
+        <p style="padding:0px 5px;margin:5px 0px">图中间的POST-MAN系统专门负责提供跨领域的IT系统的数据对接。</p>
+        <p style="padding:0px 5px;margin:5px 0px">数据对接的接口称作Datalake IF。</p>
+        <p style="padding:0px 5px;margin:5px 0px">为了便于CN项目活用GHQ Datalake IF，本页面提供各IF的sample数据下载、数据接口API封装文档下载以及sample code。</p>
+        <br />
+        <a href="https://42.159.206.166/selfquery/starter.html#/dashboard/%E9%80%9A%E7%94%A8/7" style="margin-left:5px">数据接口目录（跳转至selfquery系统）</a>
+        <br />
+        <br />
+        <a href="/doc" style="margin-left:5px">数据接口Python API封装文档下载</a>
+        <br />
+        <br />
+        <a href="/sample" style="margin-left:5px">数据接口sample code</a>
+    </div>
+</div>
+<div style="width:100%;height:20%;background-color:#FFF;">
+    <br />
+    <p style="margin:1px 5px">数据接口sample数据自助下载</p>
+    <p style="margin:10px 5px">请输入要下载的sample数据的路径<input id="sample_url" type="value" style="width:400px;margin:0px 5px"/>
+        <input id="sample_dl_submit" type="submit" value="提交" /></p>
+    <p id="dl_url" style="margin-left:5px"></p>
+</div>
+<script>
+$$(document).ready(function(){
+  $$("#sample_dl_submit").click(function(){
+    $$("#sample_dl_submit").attr("disabled","true")
+    $$("#dl_url").html("Downloading! Please refresh the page if there is no response for a long time.")
+    var u = "/getdl?path="+ $$("#sample_url").val()
+    rs = $$.ajax({
+        url:u,
+        type: 'get',
+        success: function (res) {
+            $$("#dl_url").html(res)
+        }
+    });
+    $$("#sample_dl_submit").removeAttr("disabled")
+  });
+});
+</script>
+<footer style="border-top:1px solid #d2d6de;background:#fff;display:block;">
+<strong style="line-height:52px;margin-left:12px">Powered By FR IT</strong>
+</footer>
+</body>
+</html>
