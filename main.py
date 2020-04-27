@@ -1,5 +1,4 @@
 import web
-import FRSHDataLakeCommandBase
 import os
 import base64
 import zipfile
@@ -36,7 +35,7 @@ class index:
 class getdownload:
     def GET(self):
         d = web.input()
-        fp = FRSHDataLakeCommandBase.FRSHDataLakeCommandBase(None, None)
+        fp = a secret object
         if not d.path:
             return self.errormsg()
         try:
